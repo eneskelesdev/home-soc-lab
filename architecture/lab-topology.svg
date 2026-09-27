@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="640" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Two-VM SOC lab topology</title>
+  <desc id="desc">NAT is used only for preparation. During testing, Kali at 192.168.20.11 and Windows at 192.168.20.10 share an isolated internal network. Kali probes Windows on port 3389. Windows connects to Kali on ports 9999 and 4444. Sysmon and Splunk both run locally on Windows.</desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#4979ae"/></marker>
+    <marker id="arrow-teal" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#147d70"/></marker>
+    <marker id="arrow-orange" markerWidth="9" markerHeight="9" refX="8" refY="4" orient="auto"><path d="M0 0L8 4L0 8Z" fill="#bb6328"/></marker>
+  </defs>
+  <rect width="1200" height="640" rx="16" fill="#f5f7fa"/>
+  <text x="38" y="49" fill="#182c42" font-family="Segoe UI,Arial,sans-serif" font-size="28" font-weight="700">Two machines. One isolated test network.</text>
+  <rect x="38" y="79" width="1124" height="82" rx="12" fill="#e6ecf3"/>
+  <text x="60" y="108" fill="#405774" font-family="Segoe UI,Arial,sans-serif" font-size="13" font-weight="700" letter-spacing="1.6">PREPARATION ONLY</text>
+  <text x="60" y="138" fill="#243d58" font-family="Segoe UI,Arial,sans-serif" font-size="19">Internet → NAT → Windows: download tools</text>
+  <path d="M563 99V142" stroke="#c0cddb"/>
+  <text x="590" y="114" fill="#405774" font-family="Segoe UI,Arial,sans-serif" font-size="17">Switch Windows to the internal network before testing.</text>
+  <text x="590" y="140" fill="#405774" font-family="Segoe UI,Arial,sans-serif" font-size="17">Both VMs share the same internal segment.</text>
+  <rect x="23" y="188" width="1154" height="398" rx="16" fill="#ffffff" stroke="#99bdb6" stroke-width="2" stroke-dasharray="8 6"/>
+  <text x="44" y="224" fill="#176e62" font-family="Segoe UI,Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="1.2">TEST PHASE / INTERNAL VIRTUAL NETWORK</text>
+  <text x="44" y="248" fill="#59746e" font-family="Segoe UI,Arial,sans-serif" font-size="16">192.168.20.x · /24 rebuild plan · no external route in the intended design</text>
+  <rect x="44" y="276" width="292" height="274" rx="12" fill="#fff7f0" stroke="#e7c7ad"/>
+  <rect x="44" y="276" width="292" height="6" rx="3" fill="#bb6328"/>
+  <text x="65" y="313" fill="#8b512b" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">VM 01 / ATTACKER SIMULATION</text>
+  <text x="65" y="355" fill="#182c42" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700">Kali Linux</text>
+  <text x="65" y="386" fill="#6d533e" font-family="Consolas,monospace" font-size="22">192.168.20.11</text>
+  <path d="M65 409H314" stroke="#e7c7ad"/>
+  <text x="65" y="441" fill="#544c45" font-family="Segoe UI,Arial,sans-serif" font-size="18">Nmap service discovery</text>
+  <text x="65" y="477" fill="#544c45" font-family="Segoe UI,Arial,sans-serif" font-size="18">Python HTTP server :9999</text>
+  <text x="65" y="513" fill="#544c45" font-family="Segoe UI,Arial,sans-serif" font-size="18">Metasploit listener :4444</text>
+  <rect x="747" y="276" width="409" height="274" rx="12" fill="#f0f6fc" stroke="#bdcfe3"/>
+  <rect x="747" y="276" width="409" height="6" rx="3" fill="#4979ae"/>
+  <text x="770" y="313" fill="#456a92" font-family="Segoe UI,Arial,sans-serif" font-size="12" font-weight="700" letter-spacing="1.8">VM 02 / TARGET + LOCAL SIEM</text>
+  <text x="770" y="355" fill="#182c42" font-family="Segoe UI,Arial,sans-serif" font-size="30" font-weight="700">Windows 10 Pro</text>
+  <text x="770" y="386" fill="#456a92" font-family="Consolas,monospace" font-size="22">192.168.20.10</text>
+  <path d="M770 409H1132" stroke="#bdcfe3"/>
+  <text x="770" y="439" fill="#344f6d" font-family="Segoe UI,Arial,sans-serif" font-size="18">RDP enabled :3389</text>
+  <rect x="767" y="457" width="366" height="69" rx="8" fill="#e0efe9"/>
+  <text x="783" y="483" fill="#19675d" font-family="Segoe UI,Arial,sans-serif" font-size="18" font-weight="600">Sysmon → Event Log → Splunk</text>
+  <text x="783" y="510" fill="#386f64" font-family="Segoe UI,Arial,sans-serif" font-size="16">index=endpoint · Web: localhost:8000</text>
+  <text x="541" y="320" text-anchor="middle" fill="#426e9f" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="600">Service scan · TCP 3389</text>
+  <path d="M356 338H725" fill="none" stroke="#4979ae" stroke-width="2.5" marker-end="url(#arrow-blue)"/>
+  <text x="541" y="408" text-anchor="middle" fill="#147d70" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="600">HTTP request · TCP 9999</text>
+  <path d="M726 426H357" fill="none" stroke="#147d70" stroke-width="2.5" marker-end="url(#arrow-teal)"/>
+  <text x="541" y="496" text-anchor="middle" fill="#a75a29" font-family="Segoe UI,Arial,sans-serif" font-size="17" font-weight="600">Payload callback · TCP 4444</text>
+  <path d="M726 514H357" fill="none" stroke="#bb6328" stroke-width="2.5" marker-end="url(#arrow-orange)"/>
+  <text x="38" y="617" fill="#596e83" font-family="Segoe UI,Arial,sans-serif" font-size="16">Arrows show connection initiation. Splunk and Sysmon are installed on the Windows VM.</text>
+</svg>

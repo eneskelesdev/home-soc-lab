@@ -1,0 +1,44 @@
+# Keep the portfolio focused on documentation, queries, and reviewed images.
+# VM disks, snapshots, and installers
+*.iso
+*.ova
+*.ovf
+*.vdi
+*.vhd
+*.vhdx
+*.vmdk
+*.vmem
+*.sav
+*.msi
+*.exe
+*.dll
+
+# Payloads, raw telemetry, and local evidence exports
+payloads/
+exports/
+*.evtx
+*.pcap
+*.pcapng
+*.dmp
+*.zip
+*.7z
+
+docs/
+# Credentials and local settings
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.pfx
+*.p12
+credentials*
+.vscode/
+.idea/
+
+# OS and generated preview files
+Thumbs.db
+Desktop.ini
+.DS_Store
+__pycache__/
+.preview/

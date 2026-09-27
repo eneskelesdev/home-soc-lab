@@ -1,0 +1,6 @@
+index=endpoint
+| spath input=_raw path=Event.System.Provider{@Name} output=lab_Provider
+| spath input=_raw path=Event.System.EventID output=lab_EventID
+| where lab_Provider="Microsoft-Windows-Sysmon"
+| stats count by host source sourcetype lab_EventID
+| sort host lab_EventID

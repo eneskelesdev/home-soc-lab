@@ -1,0 +1,14 @@
+index=endpoint "Microsoft-Windows-Sysmon"
+| spath input=_raw path=Event.System.Provider{@Name} output=lab_Provider
+| spath input=_raw path=Event.System.EventID output=lab_EventID
+| where lab_Provider="Microsoft-Windows-Sysmon" AND tonumber(lab_EventID)=1
+| rex field=_raw "<Data Name=['\"]Image['\"]>(?<lab_Image>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]CommandLine['\"]>(?<lab_CommandLine>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]ParentImage['\"]>(?<lab_ParentImage>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]ProcessGuid['\"]>(?<lab_ProcessGuid>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]ParentProcessGuid['\"]>(?<lab_ParentProcessGuid>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]User['\"]>(?<lab_User>[^<]*)</Data>"
+| rex field=_raw "<Data Name=['\"]Hashes['\"]>(?<lab_Hashes>[^<]*)</Data>"
+| where match(lab_Image, "(?i)[.]pdf[.]exe$")
+| table _time host lab_User lab_Image lab_CommandLine lab_ParentImage lab_ProcessGuid lab_ParentProcessGuid lab_Hashes
+| sort 0 _time

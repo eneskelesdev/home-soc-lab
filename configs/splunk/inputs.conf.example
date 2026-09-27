@@ -1,0 +1,8 @@
+# Rebuild example. Create the endpoint index before enabling this input.
+# Add once on the Windows VM running Splunk; do not duplicate an existing input.
+[WinEventLog://Microsoft-Windows-Sysmon/Operational]
+disabled = 0
+index = endpoint
+renderXml = true
+start_from = oldest
+current_only = 0
